@@ -1,0 +1,15 @@
+{
+    "label_tb": {
+        "column": {
+            "id": true,
+            "name": true,
+            "status": true,
+            "product_image": true,
+            "from_date": true,
+            "to_date": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
