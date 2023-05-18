@@ -3,17 +3,15 @@
 namespace Codilar\ProductLabel\Model;
 
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
-
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Codilar\ProductLabel\Api\Data\ProductLabelInterface;
-
 use Codilar\ProductLabel\Api\ProductLabelRepositoryInterface;
 use Codilar\ProductLabel\Model\ResourceModel\Label;
 use Codilar\ProductLabel\Model\ResourceModel\Label\CollectionFactory;
 
 /**
- * Class 
+ * Class
  * @author vishnu.chengot
  */
 class LabelRepository implements ProductLabelRepositoryInterface
@@ -44,13 +42,11 @@ class LabelRepository implements ProductLabelRepositoryInterface
         LabelFactory $labelFactory,
         Label $labelResource,
         CollectionFactory $labelCollectionFactory,
-       
         CollectionProcessorInterface $collectionProcessor
     ) {
         $this->labelFactory = $labelFactory;
         $this->labelResource = $labelResource;
         $this->labelCollectionFactory = $labelCollectionFactory;
-       
         $this->collectionProcessor = $collectionProcessor;
     }
 
@@ -96,7 +92,6 @@ class LabelRepository implements ProductLabelRepositoryInterface
         }
 
         return true;
-
     }
 
     /**
@@ -107,21 +102,19 @@ class LabelRepository implements ProductLabelRepositoryInterface
      */
     public function getAllLabels($limit = null)
     {
-    $collection = $this->labelCollectionFactory->create();
+        $collection = $this->labelCollectionFactory->create();
 
-    if ($limit !== null) {
-        $collection->setPageSize($limit);
-    }
-    
-
-    return $collection->getItems();
+        if ($limit !== null) {
+            $collection->setPageSize($limit);
+        }
+        return $collection->getItems();
     }
 
-  /**
- * {@inheritdoc}
- */
-public function getNew()
-{
-    return $this->labelFactory->create();
-}
+    /**
+     * {@inheritdoc}
+     */
+    public function getNew()
+    {
+        return $this->labelFactory->create();
+    }
 }

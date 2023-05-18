@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Codilar\ProductLabel\Block\Adminhtml\Example\Edit\Tab;
 
 use Magento\Framework\App\ObjectManager;
@@ -10,7 +9,7 @@ use Magento\Rule\Block\Conditions;
 use Magento\Backend\Block\Widget\Form\Renderer\Fieldset;
 use Magento\SalesRule\Model\RuleFactory;
 
-class ConditionsRule extends \Magento\Backend\Block\Widget\Form\Generic 
+class ConditionsRule extends \Magento\Backend\Block\Widget\Form\Generic
 {
     /**
      * Core registry
@@ -163,7 +162,7 @@ class ConditionsRule extends \Magento\Backend\Block\Widget\Form\Generic
      * @return \Magento\Framework\Data\Form
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    protected function addTabToForm($model, $fieldsetId = 'conditions_serialized', $formName = 'productlabel_product_adding')
+    protected function addTabToForm($model, $fieldsetId = 'conditions_serialized  ', $formName = 'productlabel_product_adding')
     {
         if (!$model) {
             $id = $this->getRequest()->getParam('id');
@@ -233,7 +232,5 @@ class ConditionsRule extends \Magento\Backend\Block\Widget\Form\Generic
                 $this->setConditionFormName($condition, $formName);
             }
         }
+    }
 }
-
-}
-

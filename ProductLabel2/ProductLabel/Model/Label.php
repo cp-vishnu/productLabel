@@ -1,13 +1,9 @@
 <?php
 
-
 namespace Codilar\ProductLabel\Model;
 
 use Codilar\ProductLabel\Api\Data\ProductLabelInterface;
-
 use Magento\Framework\Model\AbstractModel;
-
-
 
 class Label extends AbstractModel implements ProductLabelInterface
 {
@@ -60,10 +56,6 @@ class Label extends AbstractModel implements ProductLabelInterface
         $this->setData(self::PRODUCT_IMAGE, $product_image);
         return $this;
     }
-
-
-    
-
     public function getFromDate()
     {
         return $this->getData(self::FROM_DATE);
@@ -84,5 +76,26 @@ class Label extends AbstractModel implements ProductLabelInterface
     {
         $this->setData(self::TO_DATE, $todate);
         return $this;
+    }
+
+    /**
+     * Get Conditions Serialized
+     *
+     * @return mixed
+     */
+    public function getConditionsSerialized()
+    {
+        return $this->_getData(self::CONDITIONS_SERIALIZED);
+    }
+
+    /**
+     * Set Conditions Serialized
+     *
+     * @param string $conditions
+     * @return $this
+     */
+    public function setConditionsSerialized($conditions)
+    {
+        return $this->setData(self::CONDITIONS_SERIALIZED, $conditions);
     }
 }

@@ -6,7 +6,8 @@
             "status": true,
             "product_image": true,
             "from_date": true,
-            "to_date": true
+            "to_date": true,
+            "conditions_serialized": true
         },
         "constraint": {
             "PRIMARY": true

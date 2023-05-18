@@ -1,4 +1,5 @@
 <?php
+
 namespace Codilar\ProductLabel\Model;
 
 use Codilar\ProductLabel\Model\ResourceModel\Label\CollectionFactory;
@@ -7,7 +8,6 @@ use Magento\Backend\Model\UrlInterface;
 use Magento\Framework\Filesystem;
 use Magento\Framework\Filesystem\Driver\File\Mime;
 
- 
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
     /**
@@ -16,16 +16,16 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     protected $loadedData;
 
 
-     /**
+  /**
    * @var StoreManagerInterface
    */
-  protected $storeManager;
+    protected $storeManager;
 
 
-   /** 
-   * @var Filesystem\Directory\ReadInterface 
+  /**
+   * @var Filesystem\Directory\ReadInterface
    */
-  protected $mediaDirectory;
+    protected $mediaDirectory;
 
 
     /**
@@ -60,28 +60,24 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      * Get the FAQ details
      */
     public function getData()
-
     {
-        // var_dump('hai');
-        // die();
-   
         if (isset($this->loadedData)) {
             return $this->loadedData;
         }
         $items = $this->collection->getItems();
 
         foreach ($items as $faq) {
-            $faqdata =$faq->getData();
+            $faqdata = $faq->getData();
 
             $image = $faq['product_image'];
 
-            $imgDir ='tmp/imageUploader/images';
+            $imgDir = 'tmp/imageUploader/images';
 
-            $baseUrl =$this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
+            $baseUrl = $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
 
-            $fullImagePath =$this->mediaDirectory->getAbsolutePath($imgDir).'/'.$image;
+            $fullImagePath = $this->mediaDirectory->getAbsolutePath($imgDir) . '/' . $image;
 
-            $imageUrl = $baseUrl . $imgDir .'/' .$image;
+            $imageUrl = $baseUrl . $imgDir . '/' . $image;
 
             $stat = $this->mediaDirectory->stat($fullImagePath);
 

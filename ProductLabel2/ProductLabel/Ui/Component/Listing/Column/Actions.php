@@ -1,4 +1,5 @@
 <?php
+
 namespace Codilar\ProductLabel\Ui\Component\Listing\Column;
 
 use Magento\Framework\UrlInterface;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Codilar\ProductLabel\Ui\Component\Listing\Column;
  
 use Magento\Framework\UrlInterface;
@@ -9,7 +10,7 @@ use Magento\Ui\Component\Listing\Columns\Column;
  
 class Thumbnail extends Column
 {
-    const URL_PATH_EDIT = 'productlabel/product/edit';
+    public const URL_PATH_EDIT = 'productlabel/product/edit';
     /**
      * @var StoreManagerInterface
      */
@@ -50,16 +51,15 @@ class Thumbnail extends Column
             foreach ($dataSource['data']['items'] as & $item) {
                 if (!empty($item['product_image'])) {
                     $name = $item['product_image'];
-                    $item[$fieldName . '_src'] = $mediaUrl.'tmp/imageUploader/images/'.$name;
+                    $item[$fieldName . '_src'] = $mediaUrl . 'tmp/imageUploader/images/' . $name;
                     $item[$fieldName . '_alt'] = '';
                     $item[$fieldName . '_link'] = $this->url->getUrl(static::URL_PATH_EDIT, [
                         'id' => $item['id']
                     ]);
-                    $item[$fieldName . '_orig_src'] = $mediaUrl.'tmp/imageUploader/images/'.$name;
+                    $item[$fieldName . '_orig_src'] = $mediaUrl . 'tmp/imageUploader/images/' . $name;
                 }
             }
         }
         return $dataSource;
     }
- 
 }

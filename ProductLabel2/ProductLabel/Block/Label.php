@@ -32,9 +32,9 @@ class Label extends Template
         $collection = $this->collectionFactory->create();
 
         $writer = new \Zend_Log_Writer_Stream(BP . '/var/log/custom.log');
-$logger = new \Zend_Log();
-$logger->addWriter($writer);
-$logger->info(json_encode($collection->getData()));
+        $logger = new \Zend_Log();
+        $logger->addWriter($writer);
+        $logger->info(json_encode($collection->getData()));
 
         $label = $collection->getData();
         $fromDate = $label[0]['from_date'];
@@ -52,25 +52,21 @@ $logger->info(json_encode($collection->getData()));
 
 
     public function getImageUrl(): string
-{
+    {
     
-    $collection = $this->collectionFactory->create();
-    $labelData = $collection->getData()[0];
-    $fromDate = $labelData['from_date'];
-    $toDate = $labelData['to_date'];
-    $currentDate = date('Y-m-d');
-    $labelImage = $labelData['product_image'];
-    $baseUrl = $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
-    $imageUrl = $baseUrl . 'tmp/imageUploader/images/'.$labelImage;
+        $collection = $this->collectionFactory->create();
+        $labelData = $collection->getData()[0];
+        $fromDate = $labelData['from_date'];
+        $toDate = $labelData['to_date'];
+        $currentDate = date('Y-m-d');
+        $labelImage = $labelData['product_image'];
+        $baseUrl = $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+        $imageUrl = $baseUrl . 'tmp/imageUploader/images/' . $labelImage;
 
-    if ($currentDate >= $fromDate && $currentDate <= $toDate) {
+        if ($currentDate >= $fromDate && $currentDate <= $toDate) {
             return $imageUrl;
         }
 
-    return '' ;
-
-    // '<img src="' . $imageUrl . '" />';
-}
-
-
+        return '' ;
+    }
 }

@@ -3,11 +3,9 @@
 namespace Codilar\ProductLabel\Controller\Adminhtml\Product;
 
 use Magento\Backend\App\Action;
-// use Codilar\VendorTable\Model\VendorFactory;
 use Magento\Framework\Exception\LocalizedException;
 use Codilar\ProductLabel\Api\ProductLabelRepositoryInterface;
 use Codilar\ProductLabel\Api\Data\ProductLabelInterface;
-
 
 class MassDelete extends Action
 {
@@ -38,15 +36,11 @@ class MassDelete extends Action
     public function execute()
     {
         $ids = $this->getRequest()->getParam('selected');
-
-        // var_dump($ids);
-        // die();
         if (empty($ids)) {
             $this->messageManager->addError(__('Please select Labels(s) to delete.'));
         } else {
             try {
                 foreach ($ids as $id) {
-
                     $labels = $this->labelsRepository->getById($id);
                     $this->labelsRepository->delete($labels);
                 }
@@ -64,14 +58,4 @@ class MassDelete extends Action
 
         return $resultRedirect;
     }
-
-    // /**
-    //  * Check for permissions
-    //  *
-    //  * @return bool
-    //  */
-    // protected function _isAllowed()
-    // {
-    //     return $this->_authorization->isAllowed('Codilar_ProductLabels::productlabels_manage');
-    // }
 }

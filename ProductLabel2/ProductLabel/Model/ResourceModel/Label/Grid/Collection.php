@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Codilar\ProductLabel\Model\ResourceModel\Label\Grid;
-
 
 use Codilar\ProductLabel\Model\Label;
 use Codilar\ProductLabel\Model\ResourceModel\Label as LabelResourceModel;

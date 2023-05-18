@@ -1,15 +1,13 @@
 <?php
 
-
 namespace Codilar\ProductLabel\Model\ResourceModel;
-
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 class Label extends AbstractDb
 {
-    const MAIN_TABLE = 'label_tb';
-    const ID_FIELD_NAME = 'id';
+    public const MAIN_TABLE = 'label_tb';
+    public const ID_FIELD_NAME = 'id';
 
     protected function _construct()
     {

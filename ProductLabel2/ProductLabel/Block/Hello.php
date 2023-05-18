@@ -1,13 +1,12 @@
 <?php
 
-
 namespace Codilar\ProductLabel\Block;
 
 use Magento\Framework\View\Element\Template;
 
 class Hello extends Template
 {
-    public function getText() 
+    public function getText()
     {
         return "Hello World";
     }
@@ -18,5 +17,4 @@ class Hello extends Template
         $current_time = date('h:i:s A');
         return $current_time;
     }
-    
 }

@@ -1,24 +1,17 @@
 <?php
 
-
 namespace Codilar\ProductLabel\Controller\Adminhtml\Product;
 
 use Magento\Backend\App\Action;
 
-
 class Add extends Action
-
 {
-    // const ADMIN_RESOURCE = 'Codilar_VendorTable::vendortable_manage';
-
-
     protected $resultPageFactory = false;
 
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory
-    )
-    {
+    ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
     }
@@ -26,11 +19,8 @@ class Add extends Action
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
-        // $resultPage->setActiveMenu('Codilar_VendorTable::vendortable_manage');
         $resultPage->getConfig()->getTitle()->prepend((__('Product Label Manage')));
 
         return $resultPage;
     }
-
-
 }

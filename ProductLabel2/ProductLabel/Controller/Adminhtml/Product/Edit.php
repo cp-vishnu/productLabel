@@ -1,9 +1,5 @@
 <?php
-/**
- *
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
+
 namespace Codilar\ProductLabel\Controller\Adminhtml\Product;
 
 use Magento\Backend\App\Action;
@@ -17,7 +13,7 @@ class Edit extends Action
      *
      * @see _isAllowed()
      */
-    const ADMIN_RESOURCE = 'Codilar_ProductLabel::entity';
+    public const ADMIN_RESOURCE = 'Codilar_ProductLabel::entity';
 
     /**
      * @var \Magento\Framework\Registry
@@ -50,28 +46,18 @@ class Edit extends Action
         $id = $this->getRequest()->getParams('id');
 
         $model = $this->labelFactory->create();
-
-        // $writer = new \Zend_Log_Writer_Stream(BP . '/var/log/custom1.log');
-        // $logger = new \Zend_Log();
-        // $logger->addWriter($writer);
-
         if ($id) {
-        
-         $model = $model->load($id);
+            $model = $model->load($id);
+            if (!$model->getId()) {
+                return $resultRedirect->setPath('productlabel/product/edit');
+            }
+            $this->coreRegistry->register('label_data', $model);
 
-         // var_dump($model);
-         // die();
-         if (!$model->getId()) {
-             return $resultRedirect->setPath('productlabel/product/edit');
-         }
-        $this->coreRegistry->register('label_data', $model);
-
-        $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        $title = "Edit";
-        $resultPage->setActiveMenu('Codilar_ProductLabel::label_menu');
-        $resultPage->getConfig()->getTitle()->prepend($title);
-        return $resultPage;
+            $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+            $title = "Edit";
+            $resultPage->setActiveMenu('Codilar_ProductLabel::label_menu');
+            $resultPage->getConfig()->getTitle()->prepend($title);
+            return $resultPage;
+        }
     }
-}
-
 }

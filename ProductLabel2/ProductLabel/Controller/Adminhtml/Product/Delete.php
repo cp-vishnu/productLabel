@@ -1,4 +1,5 @@
 <?php
+
 namespace Codilar\ProductLabel\Controller\Adminhtml\Product;
 
 use Codilar\ProductLabel\Api\ProductLabelRepositoryInterface;
@@ -11,12 +12,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 
 class Delete extends Action
 {
-    /**
-     * Authorization level of a basic admin session
-     *
-     * @see _isAllowed()
-     */
-    const ADMIN_RESOURCE = 'Vendor_Modulename::entity';
+   
 
     /**
      * @var ProductLabelRepositoryInterface

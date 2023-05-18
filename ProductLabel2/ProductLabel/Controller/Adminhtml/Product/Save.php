@@ -10,7 +10,7 @@ use Magento\Framework\Controller\ResultFactory;
 use Codilar\ProductLabel\Api\ProductLabelRepositoryInterface;
 use Codilar\ProductLabel\Api\Data\ProductLabelInterface;
 
-class save extends Action
+class Save extends Action
 {
 
     /**
@@ -18,7 +18,7 @@ class save extends Action
      *
      * @see _isAllowed()
      */
-    const ADMIN_RESOURCE = 'Codilar_VendorTable::entity';
+    public const ADMIN_RESOURCE = 'Codilar_VendorTable::entity';
 
     /**
      * @var ProductLabelRepositoryInterface
@@ -46,8 +46,7 @@ class save extends Action
         ProductLabelRepositoryInterface $labelRepository,
         PageFactory $resultPageFactory,
         SessionManagerInterface $sessionManager
-    )
-    {
+    ) {
         parent::__construct($context);
         $this->labelRepository = $labelRepository;
         $this->resultPageFactory = $resultPageFactory;
@@ -58,37 +57,31 @@ class save extends Action
      * Save action
      */
     public function execute()
-    {   
+    {
         $resultRedirect = $this->resultRedirectFactory->create();
         $label = $this->labelRepository->getNew();
         
-        $data = $this->getRequest()->getPost(); 
-        
+        $data = $this->getRequest()->getPost();
         try {
             if (!empty($data['id'])) {
                 $label = $this->labelRepository->getById($data['id']);
             }
-            
-           // var_dump($data['from_date']);
-           // die();
-
+            $conditionsJson = json_encode($data['rule']['conditions']);
             $label->setName($data['name']);
             $label->setProductImage($data['product_image'][0]['name']);
             $label->setStatus($data['status']);
             $label->setFromDate($data['from_date']);
             $label->setToDate($data['to_date']);
-            // var_dump($data['product_image'][0]);
-            // die();
+            $label->setConditionsSerialized($conditionsJson);
             $this->labelRepository->save($label);
             
             //check for `back` parameter
-            if ($this->getRequest()->getParam('back')) { 
+            if ($this->getRequest()->getParam('back')) {
                 return $resultRedirect->setPath('*/*/edit', ['id' => $label->getId(), '_current' => true, '_use_rewrite' => true]);
             }
 
             $this->messageManager->addSuccess(__('The Entity has been saved.'));
-
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->messageManager->addError(__($e->getMessage()));
         }
         
