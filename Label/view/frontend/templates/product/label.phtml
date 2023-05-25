@@ -1,13 +1,26 @@
 <?php
 
-// $imageNmae = $block->getLayoutHelper();
-$baseUrl = $block->imgaeUrl();
-// $currentProductId = $block->getCurrentProduct();
-// var_dump($currentProductId);
-// die();
-// $imageUrl = $baseUrl.$imageNmae;
+$childBlock = $block->getChildBlock('product.info.me');
 
-
+if ($childBlock) {
+    /** @var \Magento\Catalog\Model\Product $product */
+    $product = $childBlock->getProduct();
+    if ($product) {
+        // You can access the product details here
+        $currentProductId = $product->getId();
+       
+    }
+}
+$ruleData = $block->getLayoutHelper();
+if (isset($ruleData[$currentProductId])) {
+    // Current product ID exists in the rule data array
+    $currentProductImage = $ruleData[$currentProductId];
+    if ($currentProductImage !== null) {
+        // Display the image for the current product
 ?>
-<img src="<?php echo $baseUrl ; ?>" >
-<!-- <div> <?php echo $baseUrl; ?> </div> -->
+    <img src="<?php echo $block->imgaeUrl($currentProductImage); ?> " alt="Product Image"> 
+<?php        
+    }
+}
+
+

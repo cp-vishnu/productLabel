@@ -22,14 +22,10 @@ class Label extends \Magento\Framework\View\Element\Template
         return $this->layoutHelper->applyCustomDesignLogic();
     }
 
-    public function imgaeUrl()
+    public function imgaeUrl($lmageName)
     {
-        $lmageName = $this->getLayoutHelper();
         $baseUrl = $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
         $imageUrl = $baseUrl . 'tmp/imageUploader/images/'.$lmageName;
-        if ($lmageName == null) {
-            return null;
-        }
         return $imageUrl;
     }
 }

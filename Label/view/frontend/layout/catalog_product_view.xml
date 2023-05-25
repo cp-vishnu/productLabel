@@ -5,7 +5,12 @@
             <block class="Codilar\Label\Block\Label"
                    name="label.visual"
                    template="Codilar_Label::product/label.phtml"
-                   before="-"/>
+                   before="-">
+                   <block class="Magento\Catalog\Block\Product\View" 
+                   name="product.info.me" 
+                   template="Codilar_Label::product/label.phtml" 
+                   after="product.info.stock.id" />
+                   </block>
         </referenceContainer>
     </body>
 </page>

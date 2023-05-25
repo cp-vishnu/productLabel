@@ -47,18 +47,17 @@ class LayoutHelper
         $productId = $product->getId();
         $productDetails = $this->productFactory->create()->load($productId);
         $ruleCollection = $this->labelConditionModel->create()->getCollection();
-        $ruleCollection->addFieldToFilter('is_active', 1);
-
+        $currentDate = (new \DateTime())->format('Y-m-d');
+        $ruleCollection->addFieldToFilter('is_active', 1)
+            ->addFieldToFilter('from_date', ['lteq' => $currentDate])
+            ->addFieldToFilter('to_date', ['gteq' => $currentDate]);
+        $ruleData = [];
         foreach ($ruleCollection as $ruleKey => $ruleVal) {
             // check Product with condition
             if ($ruleVal->getConditions()->validate($productDetails)) {
-                $rulecollection = $ruleCollection->addFieldToFilter('rule_id', $ruleVal->getId());
-                foreach ($rulecollection as $rule) {
-                    $this->ruleName = $rule->getProductImage();
-                }
-               
+                    $ruleData[$productDetails->getId()] = $ruleVal->getProductImage();
             }
         }
-        return $this->ruleName;
+        return $ruleData;
     }
 }
