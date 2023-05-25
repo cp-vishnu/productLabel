@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+	<table name="label_custom_condition" resource="default" comment="label Rules Table">
+		<column xsi:type="int" name="rule_id" padding="10" identity="true" unsigned="true" nullable="false" comment="Rule Id"/>
+		<column xsi:type="text" name="rule_name" nullable="false" comment="Rule Name"/>
+        <column xsi:type="smallint" name="is_active" unsigned="true" nullable="false" identity="false" default="0" comment="Is Active"/>
+        <column xsi:type="varchar" name="product_image" nullable="true" length="255" comment="Product Image"/>
+        <column xsi:type="timestamp" name="from_date" on_update="false" nullable="true" comment="From Date"/>
+        <column xsi:type="timestamp" name="to_date" on_update="false" nullable="true" comment="To Date"/>
+        <column xsi:type="text" name="conditions_serialized" nullable="false" comment="Conditions Serialized"/>
+        <column xsi:type="text" name="actions_serialized" nullable="true" comment="Actions Serialized"/>
+         <constraint xsi:type="primary" referenceId="PRIMARY">
+        	<column name="rule_id"/>
+			</constraint>
+	</table>
+</schema>

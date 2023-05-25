@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Codilar_Label::Label" title="Label" module="Codilar_Label" sortOrder="51" resource="Codilar_Label::Label"/>
+        <add id="Codilar_Label::custom_label" resource="Codilar_Label::custom_label" title="Label Configuarion" action="customlabel/index/index" module="Codilar_Label" sortOrder="10" parent="Codilar_Label::Label" dependsOnModule="Codilar_Label"/>
+    </menu>
+</config>
