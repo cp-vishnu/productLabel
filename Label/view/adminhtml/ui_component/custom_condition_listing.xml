@@ -137,7 +137,7 @@
                 </item>
             </argument>
         </column>
-        <!-- <column name="rule_name">
+        <column name="rule_name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
@@ -183,6 +183,6 @@
                    <item name="sortOrder" xsi:type="number">120</item>
                </item>
            </argument>
-       </actionsColumn> -->
+       </actionsColumn>
     </columns>
 </listing>
