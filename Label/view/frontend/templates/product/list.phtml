@@ -53,16 +53,25 @@ $_helper = $block->getData('outputHelper');
                      id="product-item-info_<?= /* @noEscape */ $_product->getId() ?>"
                      data-container="product-<?= /* @noEscape */ $viewMode ?>">
                     <?php
-                    $productId =$_product->getId();
-                    
+// ------------------------------edit from here ----------------------------------------------------------------
+                    $currentProductId =(int)$_product->getId();
+
                     $productBlock = $this->getChildBlock('customlabelplp.view');
-                    $imgurl =$productBlock->getImageUrl($productId);
-                    
+                    $ruleData = $productBlock->getLayoutHelper($currentProductId);
+
+                    if (isset($ruleData[$currentProductId])) {
+                        // Current product ID exists in the rule data array
+                        $currentProductImage = $ruleData[$currentProductId];
+                        if ($currentProductImage !== null) {
+                            // Display the image for the current product
+                            ?>
+                        <img src="<?php echo $productBlock->imgaeUrl($currentProductImage); ?> " alt="Product Image" style="width:60px;height=60px;"> 
+                        <?php        
+                         }
+                        }
+// ------------------------------edit to here ----------------------------------------------------------------
                     ?>
-                    <img src=" <?php  echo $imgurl ;?>">
-
                     <?php
-
                     $productImage = $block->getImage($_product, $imageDisplayArea);
                     if ($pos != null) {
                         $position = 'left:' . $productImage->getWidth() . 'px;'

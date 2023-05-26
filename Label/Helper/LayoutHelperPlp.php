@@ -6,7 +6,7 @@ use Magento\Catalog\Model\ProductFactory;
 use Codilar\Label\Model\LabelConditionFactory;
 use Magento\Catalog\Model\Design;
 
-class LayoutHelper
+class LayoutHelperPlp
 {
     /**
      * @var Registry
@@ -36,16 +36,9 @@ class LayoutHelper
     /**
      * Apply the custom design logic.
      */
-    public function applyCustomDesignLogic()
+    public function applyCustomDesignLogic($productId = null)
     {
         
-        /** @var \Magento\Catalog\Model\Product $product */
-        $product = $this->registry->registry('product');
-        if (!$product && $products= null) {
-            return;
-        }
-
-        $productId = $product->getId();
         $productDetails = $this->productFactory->create()->load($productId);
         $ruleCollection = $this->labelConditionModel->create()->getCollection();
         $currentDate = (new \DateTime())->format('Y-m-d');
